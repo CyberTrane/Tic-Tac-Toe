@@ -1,15 +1,24 @@
 const gameBoard = (() => {
-  let array = [];
+  let array = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
 
-  return array;
+  const render = () => {
+    for (let i = 0; i < array.length; i++) {
+        const square = document.querySelector(`div[data-index='${i}']`);
+        square.textContent = array[i];
+    }
+  }
+
+  return { render };
 })();
 
-const Player = (mark) => {
-    const mark = mark;
+const Player = () => {
+    // const mark = mark;
 
-    return { mark };
+    // return { mark };
 }
 
 const displayController = (() => {
 
 })();
+
+gameBoard.render();

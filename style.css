@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    justify-content: center;
+}
+
+.square {
+    border: 1px solid black;
+    height: 100px;
+    text-align: center;
+}
