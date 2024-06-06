@@ -1,24 +1,22 @@
 const gameBoard = (() => {
-  let array = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
+  const rows = 3;
+  const cols = 3;
+  const board = [];
 
-  const render = () => {
-    for (let i = 0; i < array.length; i++) {
-        const square = document.querySelector(`div[data-index='${i}']`);
-        square.textContent = array[i];
-    }
+  // for (let i = 0; i < rows; i++) {
+  //   board[i] = [];
+  //   for (let j = 0; j < cols; j++) {
+  //     board[i].push(Cell());
+  //   }
+  // }
+  console.log('board')
+  function logStuff() {
+    console.log('stuff');
   }
-
-  return { render };
 })();
 
-const Player = () => {
-    // const mark = mark;
-
-    // return { mark };
-}
-
-const displayController = (() => {
+const gameController = (() => {
+  console.log('control')
+  
 
 })();
-
-gameBoard.render();
