@@ -49,7 +49,7 @@ function Player(name, mark) {
           for (let j = 0; j < board[i].length; j++) {
             if (board[i][j] === userInput && board[i][j] !== 'X' && board[i][j] !== 'O') {
               gameBoard.updateBoard(i, j, mark);
-              marksMade.push(mark);
+              marksMade.push(userInput);
               x = false;
               break;
             }
@@ -87,23 +87,25 @@ const gameController = (() => {
   const player2 = Player(p2Name, p2Mark);
 
   const checkBoard = function(player) {
-    const marksMade = player.marksMade;
+    const marksMade = player.marksMade.slice();
     const winCombos = ['123', '456', '789', '147', '258', '369', '159', '357'];
     let counter = 0;
-    let x = 0;
+    const marksMadeLength = marksMade.length;
 
     for (let i = 0; i < winCombos.length; i++) {
-      for (let j = 0; j < marksMade.length; j++) {
+      for (let j = 0; j < marksMadeLength; j++) {
         if (winCombos[i].includes(marksMade[j])) {
           counter++;
+          marksMade.splice(j, 1);
         }
       }
     }
 
     if (counter === 3) {
       // console.log(player.name + ' wins!');
-      x = 1;
-      return x;
+      return 1;
+    } else {
+      return 0;
     }
   }
 
@@ -112,11 +114,12 @@ const gameController = (() => {
   while (x === 0) {
     player1.inputMark(player1.mark);
     x = checkBoard(player1);
-
+    console.log(x);
     // player2.inputMark(player2.mark);
     // checkBoard(player2);
 
     // note: need to figure out how to end game when a player wins
+    // note 2: fixed issue where player array kept getting re-referenced in checkBoard function. Still need to fix proper winning conditions.
   }
 
 })();
