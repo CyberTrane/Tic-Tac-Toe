@@ -1,20 +1,9 @@
 const gameBoard = (() => {
-  // let row;
-  // let col;
   const board = [['1', '2', '3'],
                  ['4', '5', '6'],
                  ['7', '8', '9']];
-  
-  // return {
-  //   // logStuff: () => {console.log('stuff')}
-  //   logStuff: () => {
-  //     console.log('stuffy')
-  //   }
-  // }
 
   return {
-    // row: row,
-    // col: col,
     board: board,
     render: () => {
       for (let i of board) {
@@ -28,11 +17,9 @@ const gameBoard = (() => {
       gameBoard.render();
     }
   }
-
 })();
 
 function Player(name, mark) {
-
   const marksMade = [];
 
   return {
@@ -61,9 +48,9 @@ function Player(name, mark) {
       }
     }
   }
-
 }
 
+// controls flow of game
 const gameController = (() => {
   gameBoard.render();
 
@@ -86,7 +73,7 @@ const gameController = (() => {
   const player1 = Player(p1Name, p1Mark);
   const player2 = Player(p2Name, p2Mark);
 
-  const checkBoard = function(player) {
+  const checkBoard = function(player) { // goes through board and looks for winning combo, prints winner
     let marksMade = player.marksMade.slice();
     const winCombos = ['123', '456', '789', '147', '258', '369', '159', '357'];
     let counter = 0;
@@ -109,15 +96,11 @@ const gameController = (() => {
 
     if (counter === 3) {
       console.log(player.name + ' wins!');
-
       return 1;
     } else {
       return 0;
     }
   }
-
-  // note: need to figure out how to end game when a player wins
-  // note 2: fixed issue where player array kept getting re-referenced in checkBoard function. Still need to fix proper winning conditions.
 
   let x = 0; // this loop goes through the turns of the players and ends in a win or tie
   for (let i = 0; i < 5; i++) {
