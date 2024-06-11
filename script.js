@@ -109,23 +109,34 @@ const gameController = (() => {
 
     if (counter === 3) {
       console.log(player.name + ' wins!');
+
       return 1;
     } else {
       return 0;
     }
   }
 
-  let x = 0;
+  // note: need to figure out how to end game when a player wins
+  // note 2: fixed issue where player array kept getting re-referenced in checkBoard function. Still need to fix proper winning conditions.
 
-  while (x === 0) {
+  let x = 0; // this loop goes through the turns of the players and ends in a win or tie
+  for (let i = 0; i < 5; i++) {
     player1.inputMark(player1.mark);
     x = checkBoard(player1);
-    console.log(x);
-    // player2.inputMark(player2.mark);
-    // checkBoard(player2);
+    if (x === 1) {
+      break;
+    }
 
-    // note: need to figure out how to end game when a player wins
-    // note 2: fixed issue where player array kept getting re-referenced in checkBoard function. Still need to fix proper winning conditions.
+    if (i === 4) {
+      console.log("It's a tie!");
+      break;
+    }
+
+    player2.inputMark(player2.mark);
+    x = checkBoard(player2);
+    if (x === 1) {
+      break;
+    }
   }
 
 })();
