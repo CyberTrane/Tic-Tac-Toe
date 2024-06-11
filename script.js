@@ -87,22 +87,28 @@ const gameController = (() => {
   const player2 = Player(p2Name, p2Mark);
 
   const checkBoard = function(player) {
-    const marksMade = player.marksMade.slice();
+    let marksMade = player.marksMade.slice();
     const winCombos = ['123', '456', '789', '147', '258', '369', '159', '357'];
     let counter = 0;
     const marksMadeLength = marksMade.length;
 
     for (let i = 0; i < winCombos.length; i++) {
       for (let j = 0; j < marksMadeLength; j++) {
-        if (winCombos[i].includes(marksMade[j])) {
+        if (winCombos[i].includes(marksMade[0])) {
           counter++;
-          marksMade.splice(j, 1);
         }
+        marksMade.splice(0, 1);
       }
+      if (counter === 3) {
+        break;
+      } else {
+        counter = 0;
+      }
+      marksMade = player.marksMade.slice();
     }
 
     if (counter === 3) {
-      // console.log(player.name + ' wins!');
+      console.log(player.name + ' wins!');
       return 1;
     } else {
       return 0;
